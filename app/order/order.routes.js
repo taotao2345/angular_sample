@@ -5,24 +5,35 @@
     .module('app.order', [
       'app.order.controller',
       'app.order.service',
-      'ngRoute'
+      'ui.router'
     ])
-    .config(['$routeProvider',
-      function($routeProvider) {
-        $routeProvider.
-        when('/orders', {
-          templateUrl: 'partials/list.html',
-          controller: 'OrderListController',
-          controllerAs: 'vm'
-        }).
-        when('/orders/:orderId', {
-          templateUrl: 'partials/detail.html',
-          controller: 'OrderDetailController',
-          controllerAs: 'vm'
-        }).
-        otherwise({
-          redirectTo: '/orders'
-        });
+    .config(['$stateProvider', '$urlRouterProvider',
+      function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/order');
+        $stateProvider
+          .state('order', {
+            url: '/order',
+            views: {
+              '@': {
+                templateUrl: 'partials/list.html',
+                controller: 'OrderListController',
+                controllerAs: 'vm'
+              }
+            }
+          })
+          .state('order.detail', {
+            url: '/:orderId',
+            views: {
+              '@': {
+                templateUrl: 'partials/detail.html',
+                controller: 'OrderDetailController',
+                controllerAs: 'vm'
+              }
+            }
+          })
+          .state('otherwise', {
+            url: '/order'
+          });
       }
     ]);
 })();

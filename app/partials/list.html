@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <ul class="orders">
     <li ng-repeat="order in vm.orders">
-      <a href="#/orders/{{order.id}}">{{order.name}}</a>
+      <a ui-sref=".detail({orderId:order.id})" ng-click="loading.status='show'">{{order.name}}</a>
     </li>
   </ul>
 </div>

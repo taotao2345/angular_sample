@@ -7,8 +7,15 @@ var ngAnnotate = require('gulp-ng-annotate');
 var bytediff = require('gulp-bytediff');
 var uglify = require('gulp-uglify');
 
+var jsFilePaths = [
+  'app/components/*.js',
+  'app/layout/*.js',
+  'app/order/*.js',
+  'app/services/*.js'
+];
+
 gulp.task('js', function() {
-  return gulp.src(['./app/**/*.js'])
+  return gulp.src(jsFilePaths)
     .pipe(sourcemaps.init())
     .pipe(concat('all.min.js', {
       newLine: ';'
@@ -22,5 +29,9 @@ gulp.task('js', function() {
     }))
     .pipe(bytediff.stop())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./app/dist'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(jsFilePaths, ['js']);
 });

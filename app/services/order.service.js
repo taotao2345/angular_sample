@@ -2,10 +2,11 @@
   'use strict';
 
   angular
-    .module('app.order.service', ['ngResource'])
+    .module('app.order.service', [
+      'ngResource'
+    ])
     .service('OrderService', OrderService);
 
-  /* @ngInject */
   function OrderService($resource) {
     return {
       getOrderList: getOrderList,

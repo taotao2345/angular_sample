@@ -3,12 +3,11 @@
 
   angular
     .module('app.order.controller', [
-      'ngRoute'
+      'ui.router'
     ])
     .controller('OrderListController', OrderListController)
     .controller('OrderDetailController', OrderDetailController);
 
-  /* @ngInject */
   function OrderListController(OrderService) {
     var vm = this;
 
@@ -19,16 +18,14 @@
     }
   }
 
-  /* @ngInject */
-  function OrderDetailController(OrderService, $routeParams) {
+  function OrderDetailController(OrderService, $stateParams) {
     var vm = this;
 
     activate();
 
     function activate() {
-      console.log($routeParams.orderId);
       vm.order = OrderService.getOrderDetail().query({
-        orderId: $routeParams.orderId
+        orderId: $stateParams.orderId
       });
     }
   }
