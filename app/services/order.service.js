@@ -5,8 +5,7 @@
     .module('app.order.service', ['ngResource'])
     .service('OrderService', OrderService);
 
-  OrderService.$inject = ['$resource'];
-
+  /* @ngInject */
   function OrderService($resource) {
     return {
       getOrderList: getOrderList,

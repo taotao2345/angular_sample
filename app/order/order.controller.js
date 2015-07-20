@@ -8,9 +8,7 @@
     .controller('OrderListController', OrderListController)
     .controller('OrderDetailController', OrderDetailController);
 
-  OrderListController.$inject = ['OrderService'];
-  OrderDetailController.$inject = ['OrderService', '$routeParams'];
-
+  /* @ngInject */
   function OrderListController(OrderService) {
     var vm = this;
 
@@ -21,6 +19,7 @@
     }
   }
 
+  /* @ngInject */
   function OrderDetailController(OrderService, $routeParams) {
     var vm = this;
 
